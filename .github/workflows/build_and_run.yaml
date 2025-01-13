@@ -7,7 +7,9 @@ on:
 
 jobs:
   build:
-
+    strategy:
+      matrix:
+        projects: [singleton, factory-method]
     runs-on: ubuntu-latest
 
     steps:
@@ -17,6 +19,6 @@ jobs:
       with:
         dotnet-version: 9.0.x
     - name: Build
-      run: dotnet build singleton
+      run: dotnet build ${{ matrix.projects }}
     - name: Test
-      run: dotnet run --project singleton
+      run: dotnet run --project ${{ matrix.projects }}
