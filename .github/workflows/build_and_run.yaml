@@ -1,0 +1,24 @@
+name: build and run
+
+on:
+  push:
+    # Run the workflow on push events to the all branches
+    branches: [ "*" ]
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        projects: [singleton, factory-method]
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 9.0.x
+    - name: Build
+      run: dotnet build ${{ matrix.projects }}
+    - name: Test
+      run: dotnet run --project ${{ matrix.projects }}
