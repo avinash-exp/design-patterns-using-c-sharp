@@ -9,7 +9,7 @@ jobs:
   build:
     strategy:
       matrix:
-        projects: [singleton, factory-method, abstract-factory-pattern]
+        projects: [singleton, factory-method, abstract-factory-pattern, "adapter-pattern"]
     runs-on: ubuntu-latest
 
     steps:
